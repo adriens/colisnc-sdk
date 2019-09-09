@@ -42,6 +42,12 @@ public class ColisCrawler {
          WebClient webClient = buildWebClient();
          ArrayList<ColisDataRow> rows ;
         rows = new ArrayList<>();
+        if(itemId == null){
+            return rows;
+        }
+        if (itemId.isEmpty()){
+            return rows;
+        }
          HtmlPage rowsPage = webClient.getPage(ColisCrawler.BASE_URL + ColisCrawler.QUERY + itemId + "&Submit=Nouvelle+recherche");
          if (rowsPage.asText().contains(NO_ROWS_MESSAGE)){
              logger.warn("Le colis demandé <" + itemId + "> est introuvable...");
@@ -92,7 +98,8 @@ public class ColisCrawler {
      }
      
      public static void main (String[] args){
-         String itemId = "XX";
+         //String itemId = "XX";
+         String itemId = "CA107308006SI";
          try{
              ColisCrawler.getColisRows(itemId);
              System.exit(0);
