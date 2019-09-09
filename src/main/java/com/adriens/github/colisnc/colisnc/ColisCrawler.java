@@ -1,0 +1,105 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.adriens.github.colisnc.colisnc;
+
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlTable;
+import com.gargoylesoftware.htmlunit.html.HtmlTableBody;
+import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *
+ * @author 3004SAL
+ */
+public class ColisCrawler {
+    public static final String BASE_URL = "http://webtrack.opt.nc/ipswebtracking/IPSWeb_item_events.asp";
+    public static final String QUERY = "?itemid=";
+    public static final String NO_ROWS_MESSAGE = "Le colis demandé est introuvable...";
+    
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss");
+    final static Logger logger = LoggerFactory.getLogger(ColisCrawler.class);
+    
+    private static WebClient buildWebClient(){
+        WebClient webClient = new WebClient(BrowserVersion.BEST_SUPPORTED);
+        webClient.getOptions().setJavaScriptEnabled(false);
+        webClient.getOptions().setDownloadImages(false);
+        return webClient;
+    }
+    
+     public static final ArrayList<ColisDataRow> getColisRows(String itemId) throws Exception {
+         WebClient webClient = buildWebClient();
+         ArrayList<ColisDataRow> rows ;
+        rows = new ArrayList<>();
+         HtmlPage rowsPage = webClient.getPage(ColisCrawler.BASE_URL + ColisCrawler.QUERY + itemId + "&Submit=Nouvelle+recherche");
+         if (rowsPage.asText().contains(NO_ROWS_MESSAGE)){
+             logger.warn("Le colis demandé <" + itemId + "> est introuvable...");
+             return rows;
+         }
+        // get the table
+         HtmlTable rowsTable = (HtmlTable)rowsPage.getElementsByTagName("table").get(0);
+         for (final HtmlTableBody body : rowsTable.getBodies()) {
+            final List<HtmlTableRow> tableRows = body.getRows();
+            logger.debug("Rows found : " + rows.size());
+            // now fetch each row
+             Iterator<HtmlTableRow> rowIter = tableRows.iterator();
+            HtmlTableRow theRow;
+            String dateHeure;
+            String pays;
+            String localisation;
+            String typeEvenement;
+            String informations;
+            LocalDateTime localDateTime;
+                    
+            while (rowIter.hasNext()) {
+                theRow = rowIter.next();
+                dateHeure = theRow.getCell(1).asText();
+                pays = theRow.getCell(2).asText();
+                localisation = theRow.getCell(3).asText();
+                typeEvenement = theRow.getCell(4).asText();
+                informations = theRow.getCell(5).asText();
+            
+                localDateTime = LocalDateTime.parse(dateHeure, formatter);
+                System.out.println(localDateTime);
+                
+                logger.debug("RAW LINE : <" + theRow.asText() + ">");
+                logger.info("raw dateHeure : <" + dateHeure + ">");
+                logger.info("Local DateTime: <" + localDateTime + ">");
+                
+                logger.info("pays : <" + pays + ">");
+                logger.info("localisation : <" + localisation + ">");
+                logger.info("typeEvenement : <" + typeEvenement + ">");
+                logger.info("informations : <" + informations + ">");
+                logger.info("---------------------------------------------------");
+                //lTransaction = new Transaction(convertFromTextDate(dateAsString), libele, extractSolde(debitAsString), extractSolde(credititAsString));
+                //getTransactions().add(lTransaction);
+                //logger.debug("Added new transaction : " + lTransaction.toString());
+            }
+            //logger.debug("End of <" + getTransactions().size() + "> transactions fetching");
+        }
+        return rows;
+     }
+     
+     public static void main (String[] args){
+         String itemId = "XX";
+         try{
+             ColisCrawler.getColisRows(itemId);
+             System.exit(0);
+         }
+         catch (Exception ex){
+             System.exit(1);
+         }
+     }
+    
+}
