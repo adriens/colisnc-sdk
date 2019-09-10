@@ -88,6 +88,7 @@ public class ColisCrawler {
                 colisRow.setLocalisation(localisation);
                 colisRow.setTypeEvenement(typeEvenement);
                 colisRow.setInformations(informations);
+                colisRow.setDate(localDateTime);
                 rows.add(colisRow);
                 
                 logger.debug("RAW LINE : <" + theRow.asText() + ">");
