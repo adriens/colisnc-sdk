@@ -48,3 +48,12 @@ dependencies {
     implementation 'com.github.adriens:colisnc-sdk:Tag'
 }
 ```
+
+## Code snippet
+
+
+```java
+ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
+System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
+System.exit(0);
+```
