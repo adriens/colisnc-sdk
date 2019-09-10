@@ -61,26 +61,37 @@ public class ColisCrawler {
             // now fetch each row
              Iterator<HtmlTableRow> rowIter = tableRows.iterator();
             HtmlTableRow theRow;
-            String dateHeure;
+            
+            String rawDateHeure;
             String pays;
             String localisation;
             String typeEvenement;
             String informations;
             LocalDateTime localDateTime;
-                    
+                
+            
+            
             while (rowIter.hasNext()) {
+                ColisDataRow colisRow = new ColisDataRow();
                 theRow = rowIter.next();
-                dateHeure = theRow.getCell(1).asText();
+                
+                rawDateHeure = theRow.getCell(1).asText();
                 pays = theRow.getCell(2).asText();
                 localisation = theRow.getCell(3).asText();
                 typeEvenement = theRow.getCell(4).asText();
                 informations = theRow.getCell(5).asText();
             
-                localDateTime = LocalDateTime.parse(dateHeure, formatter);
-                System.out.println(localDateTime);
+                localDateTime = LocalDateTime.parse(rawDateHeure, formatter);
+                
+                colisRow.setRawDateHeure(rawDateHeure);;
+                colisRow.setPays(pays);
+                colisRow.setLocalisation(localisation);
+                colisRow.setTypeEvenement(typeEvenement);
+                colisRow.setInformations(informations);
+                rows.add(colisRow);
                 
                 logger.debug("RAW LINE : <" + theRow.asText() + ">");
-                logger.info("raw dateHeure : <" + dateHeure + ">");
+                logger.info("raw dateHeure : <" + rawDateHeure + ">");
                 logger.info("Local DateTime: <" + localDateTime + ">");
                 
                 logger.info("pays : <" + pays + ">");
@@ -101,7 +112,8 @@ public class ColisCrawler {
          //String itemId = "XX";
          String itemId = "CA107308006SI";
          try{
-             ColisCrawler.getColisRows(itemId);
+             ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
+             System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
              System.exit(0);
          }
          catch (Exception ex){
