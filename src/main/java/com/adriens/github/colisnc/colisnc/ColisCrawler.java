@@ -120,5 +120,4 @@ public class ColisCrawler {
              System.exit(1);
          }
      }
-    
 }
