@@ -108,13 +108,29 @@ public class ColisCrawler {
         }
         return rows;
      }
-     
+     public static final ColisDataRow getLatest(String itemId) throws Exception {
+         if(itemId == null){
+            return null;
+         }
+         if(itemId.length() == 0){
+             return null;
+         }
+         ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
+         
+         if(lList.size() == 0){
+             return null;
+         }
+         
+         return lList.get(lList.size()-1);
+     }
      public static void main (String[] args){
          //String itemId = "XX";
          String itemId = "CA107308006SI";
          try{
              ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
              System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
+             System.out.println("###############################################");
+             System.out.println("latest : " + ColisCrawler.getLatest(itemId));
              System.exit(0);
          }
          catch (Exception ex){
