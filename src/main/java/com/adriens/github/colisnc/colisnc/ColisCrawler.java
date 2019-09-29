@@ -121,8 +121,25 @@ public class ColisCrawler {
              return null;
          }
          
+         return lList.get(0);
+     }
+     
+     public static final ColisDataRow getOldest(String itemId) throws Exception {
+         if(itemId == null){
+            return null;
+         }
+         if(itemId.length() == 0){
+             return null;
+         }
+         ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
+         
+         if(lList.size() == 0){
+             return null;
+         }
+         
          return lList.get(lList.size()-1);
      }
+     
      public static void main (String[] args){
          //String itemId = "XX";
          String itemId = "CA107308006SI";
