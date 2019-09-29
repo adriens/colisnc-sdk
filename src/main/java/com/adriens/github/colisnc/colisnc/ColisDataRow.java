@@ -24,6 +24,7 @@ public class ColisDataRow {
      COLIS_A_QUITTE_PAYS_ORIGINE,
      COLIS_PRIS_EN_CHARGE,
      COLIS_NULL_STATUS,
+     COLIS_PAS_PU_ETRE_LIVRE,
      UNEXPECTED
     }
     
@@ -55,6 +56,9 @@ public class ColisDataRow {
         }
         else if(aTypeEvenement.contains("a été pris en charge")){
             return Status.COLIS_PRIS_EN_CHARGE;
+        }
+        else if(aTypeEvenement.contains("n'a pas pu être livré")){
+            return Status.COLIS_PAS_PU_ETRE_LIVRE;
         }
         else {
             logger.warn("Got unexpected status : <" + aTypeEvenement + ">. Returning <" + Status.UNEXPECTED + ">.");
