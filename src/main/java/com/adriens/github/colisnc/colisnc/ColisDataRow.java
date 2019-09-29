@@ -6,6 +6,8 @@
 package com.adriens.github.colisnc.colisnc;
 
 import java.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -13,6 +15,55 @@ import java.time.LocalDateTime;
  */
 public class ColisDataRow {
 
+    final static Logger logger = LoggerFactory.getLogger(ColisDataRow.class);
+    enum Status {
+     COLIS_LIVRE,
+     COLIS_EN_COURS_ACHEMINEMENT,
+     COLIS_EN_COURS_DEDOUANEMENT,
+     COLIS_ARRIVE_PAYS_DESTINATION,
+     COLIS_A_QUITTE_PAYS_ORIGINE,
+     COLIS_PRIS_EN_CHARGE,
+     COLIS_NULL_STATUS,
+     UNEXPECTED
+    }
+    
+    public static final Status getStatus(ColisDataRow aRow){
+   
+        if(aRow == null){
+            return null;
+        }
+        String aTypeEvenement = aRow.getTypeEvenement();
+        if (aTypeEvenement == null){
+            return Status.COLIS_NULL_STATUS;
+        }
+        // now test
+        aTypeEvenement.replace("Votre courrier/colis", "");
+        if (aTypeEvenement.contains("a été livré")){
+            return Status.COLIS_LIVRE;
+        }
+        else if(aTypeEvenement.contains("en cours d'acheminement")){
+            return Status.COLIS_EN_COURS_ACHEMINEMENT;
+        }
+        else if(aTypeEvenement.contains("en cours de dédouanement")){
+            return Status.COLIS_EN_COURS_DEDOUANEMENT;
+        }
+        else if(aTypeEvenement.contains("arrivé dans le pays de destination")){
+            return Status.COLIS_ARRIVE_PAYS_DESTINATION;
+        }
+        else if(aTypeEvenement.contains("quitté le pays d'origine")){
+            return Status.COLIS_A_QUITTE_PAYS_ORIGINE;
+        }
+        else if(aTypeEvenement.contains("a été pris en charge")){
+            return Status.COLIS_PRIS_EN_CHARGE;
+        }
+        else {
+            logger.warn("Got unexpected status : <" + aTypeEvenement + ">. Returning <" + Status.UNEXPECTED + ">.");
+            logger.warn("Plese consider adding this staus to test case ;-p");
+            return Status.UNEXPECTED;
+        }
+        
+        
+    }
     /**
      * @return the rawDateHeure
      */
@@ -103,8 +154,20 @@ public class ColisDataRow {
     private String informations;
     private LocalDateTime date;
     
+    private Status status;
     public ColisDataRow(){
         
+    }
+    
+    
+    public void setStatus(){
+        setStatus(ColisDataRow.getStatus(this));
+    }
+    public void setStatus(Status aStatus){
+        this.status = aStatus;
+    }
+    public Status getStatus(){
+        return this.status;
     }
     
     
@@ -113,6 +176,7 @@ public class ColisDataRow {
         String out = "";
         out = "Date/Heure : <" + getRawDateHeure() + ">\n";
         out += "Localisation : <" + getLocalisation() + ">\n";
+        out += "Status : <" + getStatus().toString() + ">";
         return out;
     }
 }
