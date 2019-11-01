@@ -5,6 +5,8 @@
  */
 package com.adriens.github.colisnc.colisnc;
 
+import com.adriens.github.colisnc.countries.Country;
+import com.adriens.github.colisnc.countries.ListCountriesDefinedLanguage;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -159,6 +161,8 @@ public class ColisDataRow {
     private LocalDateTime date;
     
     private Status status;
+    
+    private Country country;
     public ColisDataRow(){
         
     }
@@ -174,7 +178,13 @@ public class ColisDataRow {
         return this.status;
     }
     
+    public void setCountry(Country aCountry){
+        this.country = aCountry;
+    }
     
+    public Country getCountry(){
+        return this.country;
+    }
     
     public String toString(){
         String out = "";

@@ -5,6 +5,7 @@
  */
 package com.adriens.github.colisnc.colisnc;
 
+import com.adriens.github.colisnc.countries.ListCountriesDefinedLanguage;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -90,6 +91,7 @@ public class ColisCrawler {
                 colisRow.setInformations(informations);
                 colisRow.setDate(localDateTime);
                 colisRow.setStatus();
+                colisRow.setCountry(ListCountriesDefinedLanguage.getCountry(pays));
                 rows.add(colisRow);
                 
                 logger.debug("RAW LINE : <" + theRow.asText() + ">");
