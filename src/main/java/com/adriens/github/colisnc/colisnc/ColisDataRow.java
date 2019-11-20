@@ -7,6 +7,7 @@ package com.adriens.github.colisnc.colisnc;
 
 import com.adriens.github.colisnc.countries.Country;
 import com.adriens.github.colisnc.countries.ListCountriesDefinedLanguage;
+import com.adriens.github.colisnc.localisation.Localisation;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,20 @@ import org.slf4j.LoggerFactory;
  * @author 3004SAL
  */
 public class ColisDataRow {
+
+    /**
+     * @return the localization
+     */
+    public Localisation getLocalization() {
+        return localization;
+    }
+
+    /**
+     * @param localization the localization to set
+     */
+    public void setLocalization(Localisation localization) {
+        this.localization = localization;
+    }
 
     final static Logger logger = LoggerFactory.getLogger(ColisDataRow.class);
     enum Status {
@@ -163,6 +178,9 @@ public class ColisDataRow {
     private Status status;
     
     private Country country;
+    
+    private Localisation localization;
+    
     public ColisDataRow(){
         
     }

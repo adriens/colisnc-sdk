@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<localisations>
+    <localisation>
+        <name>NOUMEA-CTP</name>
+        <longName>OPT CTP Centre De Traitement Postal</longName>
+        <url>https://goo.gl/maps/GDNkWp7QvHyNFuAM6</url>
+    </localisation>
+    <localisation>
+        <name>NOUMEA CDC</name>
+        <longName>Office des Postes - Agence Principale</longName>
+        <url></url>
+    </localisation>
+    <localisation>
+        <name>DUMBEA MAIRIE</name>
+        <longName>Hôtel de Ville de Dumbéa</longName>
+        <url>https://goo.gl/maps/9Qu8xtGsfSutLadLA</url>
+    </localisation>
+    <localisation>
+        <name>DUMBEA KOUTIO</name>
+        <longName>Opt - Agence De Dumbea Koutio</longName>
+        <url>https://goo.gl/maps/otmFAtgTj6ttwXH89</url>
+    </localisation>
+    
+    <!-- Other countries -->
+    <localisation>
+        <name>GUANGZHOU</name>
+        <longName>Guangzhou</longName>
+        <url>https://goo.gl/maps/r7EM4eNpgFjuysVY7</url>
+    </localisation>
+    <localisation>
+        <name>LJUBLJANA 1003</name>
+        <longName>Ljubljana</longName>
+        <url>https://goo.gl/maps/GyPs8RGGxpCH36Xb7</url>
+    </localisation>
+    <localisation>
+        <name>CHILLY MAZARIN CENTRE ECHANGES</name>
+        <longName>CHILLY MAZARIN CENTRE ECHANGES</longName>
+        <url>https://goo.gl/maps/CGsEroEKcw1SzC3o7</url>
+    </localisation>
+    <localisation>
+        <name>CHILLY MAZARIN CENTRE ECHANGES INT</name>
+        <longName>CHILLY MAZARIN CENTRE ECHANGES INT</longName>
+        <url>https://goo.gl/maps/CGsEroEKcw1SzC3o7</url>
+    </localisation>
+</localisations>

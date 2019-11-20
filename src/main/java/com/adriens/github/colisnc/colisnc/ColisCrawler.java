@@ -6,6 +6,8 @@
 package com.adriens.github.colisnc.colisnc;
 
 import com.adriens.github.colisnc.countries.ListCountriesDefinedLanguage;
+import com.adriens.github.colisnc.localisation.Localisation;
+import com.adriens.github.colisnc.localisation.Localisations;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -69,7 +71,7 @@ public class ColisCrawler {
             String typeEvenement;
             String informations;
             LocalDateTime localDateTime;
-                
+            Localisation geolocalized;
             
             
             while (rowIter.hasNext()) {
@@ -83,6 +85,8 @@ public class ColisCrawler {
                 informations = theRow.getCell(5).asText();
             
                 localDateTime = LocalDateTime.parse(rawDateHeure, formatter);
+                geolocalized = Localisations.locate(localisation);
+                
                 
                 colisRow.setRawDateHeure(rawDateHeure);;
                 colisRow.setPays(pays);
@@ -92,6 +96,7 @@ public class ColisCrawler {
                 colisRow.setDate(localDateTime);
                 colisRow.setStatus();
                 colisRow.setCountry(ListCountriesDefinedLanguage.getCountry(pays));
+                colisRow.setLocalization(geolocalized);
                 rows.add(colisRow);
                 
                 logger.debug("RAW LINE : <" + theRow.asText() + ">");
@@ -102,6 +107,7 @@ public class ColisCrawler {
                 logger.info("localisation : <" + localisation + ">");
                 logger.info("typeEvenement : <" + typeEvenement + ">");
                 logger.info("informations : <" + informations + ">");
+                logger.info("localization : <" + geolocalized + ">");
                 logger.info("---------------------------------------------------");
                 //lTransaction = new Transaction(convertFromTextDate(dateAsString), libele, extractSolde(debitAsString), extractSolde(credititAsString));
                 //getTransactions().add(lTransaction);
