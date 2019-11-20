@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +34,7 @@ public class ListCountriesDefinedLanguage {
             String iso = locale.getISO3Country();
             String code = locale.getCountry();
             String name = locale.getDisplayCountry(Locale.FRANCE).toLowerCase();
+            name = StringUtils.stripAccents(name);
 
             countries.add(new Country(iso, code, name));
         }
@@ -59,13 +61,13 @@ public class ListCountriesDefinedLanguage {
         }
         
         Map<String, Country> cMap = getCountries().stream().collect(Collectors.toMap(Country::getName, country -> country));
-        out = cMap.get(aCountryName.toLowerCase());
+        out = cMap.get(StringUtils.stripAccents(aCountryName.toLowerCase()));
         return out;
     }
     public static void main(String... args){
 
         // Create a collection of all available countries
-        Country theCountry = ListCountriesDefinedLanguage.getCountry("SLOVÉNIE");
+        Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
         System.out.println("trouvé:\n" + theCountry);
         System.exit(0);
     }

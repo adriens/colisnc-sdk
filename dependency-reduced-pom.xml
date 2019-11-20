@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.adriens.github.colisnc</groupId>
   <artifactId>ColisNcSDK</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.5</version>
   <build>
     <plugins>
       <plugin>
@@ -49,7 +49,7 @@
   </dependencies>
   <properties>
     <logback.version>1.2.3</logback.version>
-    <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
     <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
     <htmlunit.version>2.36.0</htmlunit.version>
     <maven.compiler.source>1.8</maven.compiler.source>
