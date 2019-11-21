@@ -42,4 +42,20 @@
         <longName>CHILLY MAZARIN CENTRE ECHANGES INT</longName>
         <url>https://goo.gl/maps/CGsEroEKcw1SzC3o7</url>
     </localisation>
+    
+    <localisation>
+        <name>SYDNEY</name>
+        <longName>Sydney</longName>
+        <url>https://goo.gl/maps/nodkG58kin5czeby6</url>
+    </localisation>
+    <localisation>
+        <name></name>
+        <longName></longName>
+        <url></url>
+    </localisation>
+    <localisation>
+        <name></name>
+        <longName></longName>
+        <url></url>
+    </localisation>
 </localisations>
