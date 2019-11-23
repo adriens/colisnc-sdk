@@ -58,4 +58,9 @@
         <longName>Los Angeles</longName>
         <url>https://goo.gl/maps/qtWQRpPSaDBQLMbAA</url>
     </localisation>
+    <localisation>
+        <name>SINGAPORE S05</name>
+        <longName>SINGAPOUR</longName>
+        <url>https://goo.gl/maps/8He2kUAvCEEPSbPG8</url>
+    </localisation>
 </localisations>
