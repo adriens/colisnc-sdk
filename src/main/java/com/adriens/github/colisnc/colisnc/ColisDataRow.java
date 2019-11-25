@@ -19,6 +19,20 @@ import org.slf4j.LoggerFactory;
 public class ColisDataRow {
 
     /**
+     * @return the itemId
+     */
+    public String getItemId() {
+        return itemId;
+    }
+
+    /**
+     * @param itemId the itemId to set
+     */
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    /**
      * @return the localization
      */
     public Localisation getLocalization() {
@@ -181,6 +195,9 @@ public class ColisDataRow {
     
     private Localisation localization;
     
+    private String itemId;
+    
+    
     public ColisDataRow(){
         
     }
@@ -206,7 +223,8 @@ public class ColisDataRow {
     
     public String toString(){
         String out = "";
-        out = "Date/Heure : <" + getRawDateHeure() + ">\n";
+        out = "Colis: <" + getItemId() + ">\n";
+        out += "Date/Heure : <" + getRawDateHeure() + ">\n";
         out += "Localisation : <" + getLocalisation() + ">\n";
         out += "Status : <" + getStatus().toString() + ">";
         return out;

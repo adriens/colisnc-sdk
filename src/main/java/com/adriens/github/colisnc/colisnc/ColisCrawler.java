@@ -17,6 +17,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import org.slf4j.Logger;
@@ -39,6 +40,26 @@ public class ColisCrawler {
         webClient.getOptions().setJavaScriptEnabled(false);
         webClient.getOptions().setDownloadImages(false);
         return webClient;
+    }
+    
+    public static final ArrayList<ColisDataRow> getLatestStatusForColisList(List<String> colisListe) throws Exception {
+        logger.info("Getting latest status for colisLIste <" + colisListe.toString() + ">");
+        ArrayList<ColisDataRow> out = new ArrayList<ColisDataRow>();
+        if(colisListe == null){
+            return null;
+        }
+        Iterator<String> iterColis = colisListe.iterator();
+        String lColisId;
+        ColisDataRow lDataRow;
+        while(iterColis.hasNext()){
+            lColisId = iterColis.next();
+            logger.info("Getting latest status for colis <" + lColisId + ">...");
+            lDataRow = ColisCrawler.getLatest(lColisId);
+            logger.info("Got <" + lColisId + "> data: " + lDataRow.toString());
+            out.add(lDataRow);
+        }
+        
+        return out;
     }
     
      public static final ArrayList<ColisDataRow> getColisRows(String itemId) throws Exception {
@@ -87,7 +108,7 @@ public class ColisCrawler {
                 localDateTime = LocalDateTime.parse(rawDateHeure, formatter);
                 geolocalized = Localisations.locate(localisation);
                 
-                
+                colisRow.setItemId(itemId);
                 colisRow.setRawDateHeure(rawDateHeure);;
                 colisRow.setPays(pays);
                 colisRow.setLocalisation(localisation);
@@ -157,6 +178,17 @@ public class ColisCrawler {
              System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
              System.out.println("###############################################");
              System.out.println("latest : " + ColisCrawler.getLatest(itemId));
+             
+             System.out.println("############################################");
+             List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "CA107308006SI", "7A53946342222"});
+             List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);
+             Iterator<ColisDataRow> iterLatest = latestStatus.iterator();
+             ColisDataRow aRow;
+             while(iterLatest.hasNext()){
+                 aRow = iterLatest.next();
+                 System.out.println(aRow);
+             }
+             
              System.exit(0);
          }
          catch (Exception ex){
