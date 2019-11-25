@@ -54,9 +54,15 @@ public class ColisCrawler {
         while(iterColis.hasNext()){
             lColisId = iterColis.next();
             logger.info("Getting latest status for colis <" + lColisId + ">...");
-            lDataRow = ColisCrawler.getLatest(lColisId);
-            logger.info("Got <" + lColisId + "> data: " + lDataRow.toString());
-            out.add(lDataRow);
+            try{
+                lDataRow = ColisCrawler.getLatest(lColisId);
+                logger.info("Got <" + lColisId + "> data: " + lDataRow.toString());
+                out.add(lDataRow);
+            }
+            catch(Exception ex){
+                logger.warn("Not able to fetch colis <" + lColisId + ">: " + ex.getMessage());
+            }
+            
         }
         
         return out;
@@ -180,7 +186,7 @@ public class ColisCrawler {
              System.out.println("latest : " + ColisCrawler.getLatest(itemId));
              
              System.out.println("############################################");
-             List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "CA107308006SI", "7A53946342222"});
+             List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "XXX", "CA107308006SI", "7A53946342222"});
              List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);
              Iterator<ColisDataRow> iterLatest = latestStatus.iterator();
              ColisDataRow aRow;
