@@ -23,17 +23,19 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * @author 3004SAL
+ *
  */
-
 @XmlRootElement(name = "localisations")
 @XmlAccessorType(XmlAccessType.FIELD)
+
 public class Localisations {
-    
+
     final static Logger logger = LoggerFactory.getLogger(Localisations.class);
-    
+
     @XmlElement(name = "localisation")
     private List<Localisation> localisations = null;
-    
+
+   
     public Localisations() {
         localisations = new ArrayList<Localisation>();
     }
@@ -46,34 +48,36 @@ public class Localisations {
         this.localisations = localisations;
     }
     
-    public static Localisation locate(String aLocalisation){
-        Localisation out = new Localisation();
-        try{
-            
-        JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        
-        Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
+    public static Localisation locate(String aLocalisation) {
 
-        // transform List into Hashmap
+        Localisation out = new Localisation();
+
+        try {
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
+
+            // transform List into Hashmap
             Map<String, Localisation> cMap = parts.getLocalisations().stream().collect(Collectors.toMap(Localisation::getName, localization -> localization));
-        // search in the hashmap
+            // search in the hashmap
             out = cMap.get(aLocalisation);
-            if (out != null){
+            
+            if (out != null) {
                 return out;
-            }
-            else {
+            } else {
                 logger.warn("Not able to find localization <" + aLocalisation + ">. Return an empty one.");
                 return new Localisation();
             }
-        
-        }
-        catch(JAXBException ex){
+
+        } catch (JAXBException ex) {
             logger.error("Localizations xml parse error: " + ex.getMessage());
             return new Localisation();
         }
     }
-    
+
+    /*
     public static void main(String[] args) throws Exception {
         JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -94,5 +98,5 @@ public class Localisations {
         
         local = Localisations.locate(aLocalisation);
         System.out.println(local);
-    }
+    }*/
 }

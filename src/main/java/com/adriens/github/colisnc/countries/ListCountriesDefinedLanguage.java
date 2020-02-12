@@ -21,10 +21,12 @@ import org.slf4j.LoggerFactory;
  * @author 3004SAL
  */
 public class ListCountriesDefinedLanguage {
+    
     final static Logger logger = LoggerFactory.getLogger(ListCountriesDefinedLanguage.class);
     
+    
     public static List<Country> getCountries() {
-        List<Country> countries = new ArrayList<Country>();
+        List<Country> countries = new ArrayList<>();
 
         // Map ISO countries to custom country object
         String[] countryCodes = Locale.getISOCountries();
@@ -50,7 +52,6 @@ public class ListCountriesDefinedLanguage {
         return countries;
     }
     
-    
     public static Country getCountry(String aCountryName){
         Country out = null;
         if(aCountryName == null){
@@ -63,12 +64,14 @@ public class ListCountriesDefinedLanguage {
         Map<String, Country> cMap = getCountries().stream().collect(Collectors.toMap(Country::getName, country -> country));
         out = cMap.get(StringUtils.stripAccents(aCountryName.toLowerCase()));
         return out;
-    }
+    }/*
+    
+    
     public static void main(String... args){
 
         // Create a collection of all available countries
         Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
         System.out.println("trouvé:\n" + theCountry);
         System.exit(0);
-    }
+    }*/
 }

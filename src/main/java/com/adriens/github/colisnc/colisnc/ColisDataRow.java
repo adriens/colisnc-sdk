@@ -18,34 +18,23 @@ import org.slf4j.LoggerFactory;
  */
 public class ColisDataRow {
 
-    /**
-     * @return the itemId
-     */
+    
     public String getItemId() {
         return itemId;
     }
-
-    /**
-     * @param itemId the itemId to set
-     */
+    
     public void setItemId(String itemId) {
         this.itemId = itemId;
     }
-
-    /**
-     * @return the localization
-     */
+    
     public Localisation getLocalization() {
         return localization;
     }
-
-    /**
-     * @param localization the localization to set
-     */
+    
     public void setLocalization(Localisation localization) {
         this.localization = localization;
     }
-
+    
     final static Logger logger = LoggerFactory.getLogger(ColisDataRow.class);
     enum Status {
      COLIS_LIVRE,
@@ -68,6 +57,7 @@ public class ColisDataRow {
         if (aTypeEvenement == null){
             return Status.COLIS_NULL_STATUS;
         }
+        
         // now test
         aTypeEvenement.replace("Votre courrier/colis", "");
         if (aTypeEvenement.contains("a été livré")){
@@ -96,119 +86,79 @@ public class ColisDataRow {
             logger.warn("Plese consider adding this staus to test case ;-p");
             return Status.UNEXPECTED;
         }
-        
-        
     }
-    /**
-     * @return the rawDateHeure
-     */
+    
     public String getRawDateHeure() {
         return rawDateHeure;
     }
-
-    /**
-     * @param rawDateHeure the rawDateHeure to set
-     */
+    
     public void setRawDateHeure(String rawDateHeure) {
         this.rawDateHeure = rawDateHeure;
     }
-
-    /**
-     * @return the pays
-     */
+    
     public String getPays() {
         return pays;
     }
-
-    /**
-     * @param pays the pays to set
-     */
+    
     public void setPays(String pays) {
         this.pays = pays;
     }
-
-    /**
-     * @return the localisation
-     */
+    
     public String getLocalisation() {
         return localisation;
     }
-
-    /**
-     * @param localisation the localisation to set
-     */
+    
     public void setLocalisation(String localisation) {
         this.localisation = localisation;
     }
 
-    /**
-     * @return the typeEvenement
-     */
     public String getTypeEvenement() {
         return typeEvenement;
     }
-
-    /**
-     * @param typeEvenement the typeEvenement to set
-     */
+    
     public void setTypeEvenement(String typeEvenement) {
         this.typeEvenement = typeEvenement;
     }
-
-    /**
-     * @return the informations
-     */
+    
     public String getInformations() {
         return informations;
     }
-
-    /**
-     * @param informations the informations to set
-     */
+    
     public void setInformations(String informations) {
         this.informations = informations;
     }
-
-    /**
-     * @return the date
-     */
+    
     public LocalDateTime getDate() {
         return date;
     }
-
-    /**
-     * @param date the date to set
-     */
+    
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+    
     private String rawDateHeure;
     private String pays;
     private String localisation;
     private String typeEvenement;
     private String informations;
     private LocalDateTime date;
-    
     private Status status;
-    
     private Country country;
-    
     private Localisation localization;
-    
     private String itemId;
-    
     
     public ColisDataRow(){
         
     }
     
-    
     public void setStatus(){
         setStatus(ColisDataRow.getStatus(this));
     }
+    
     public void setStatus(Status aStatus){
         this.status = aStatus;
     }
+    
     public Status getStatus(){
         return this.status;
     }
