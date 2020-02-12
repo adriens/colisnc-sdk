@@ -17,6 +17,13 @@
         <!-- Plugins versions -->
         <maven-shade-plugin.version>3.2.2</maven-shade-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        
+        <!-- dépendance JAXB -->
+        <jaxb-core.version>2.3.0.1</jaxb-core.version>
+        <jaxb-impl.version>2.3.2</jaxb-impl.version>
+        
+        <!-- dépendance jacoco -->
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     </properties>
     
     <dependencies>
@@ -45,41 +52,17 @@
             <scope>test</scope>
         </dependency>
         
-        <dependency>
-            <groupId>com.github.stefanbirkner</groupId>
-            <artifactId>system-rules</artifactId>
-            <version>1.19.0</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- XML serialization -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>2.3.0.1</version>
+            <version>${jaxb-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <scope>test</scope>
-            <version>2.44.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.opera</groupId>
-            <artifactId>operadriver</artifactId>
-            <scope>test</scope>
-            <version>1.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${jaxb-impl.version}</version>
         </dependency>
     </dependencies>
     
@@ -119,7 +102,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
