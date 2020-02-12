@@ -15,44 +15,26 @@ public class Localisation {
     private String longName;
     private String url;
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
-
-    /**
-     * @param name the name to set
-     */
+    
     public void setName(String name) {
         this.name = name;
     }
-
-    /**
-     * @return the longName
-     */
+    
     public String getLongName() {
         return longName;
     }
-
-    /**
-     * @param longName the longName to set
-     */
+    
     public void setLongName(String longName) {
         this.longName = longName;
     }
-
-    /**
-     * @return the url
-     */
+    
     public String getUrl() {
         return url;
     }
-
-    /**
-     * @param url the url to set
-     */
+    
     public void setUrl(String url) {
         this.url = url;
     }

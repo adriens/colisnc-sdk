@@ -28,14 +28,14 @@ import org.slf4j.LoggerFactory;
  * @author 3004SAL
  */
 public class ColisCrawler {
+
     public static final String BASE_URL = "http://webtrack.opt.nc/ipswebtracking/IPSWeb_item_events.asp";
     public static final String QUERY = "?itemid=";
     public static final String NO_ROWS_MESSAGE = "Le colis demandé est introuvable...";
-    
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss");
     final static Logger logger = LoggerFactory.getLogger(ColisCrawler.class);
-    
-    private static WebClient buildWebClient(){
+
+    private static WebClient buildWebClient() {
         WebClient webClient = new WebClient(BrowserVersion.BEST_SUPPORTED);
         webClient.getOptions().setJavaScriptEnabled(false);
         webClient.getOptions().setDownloadImages(false);
@@ -43,55 +43,57 @@ public class ColisCrawler {
     }
     
     public static final ArrayList<ColisDataRow> getLatestStatusForColisList(List<String> colisListe) throws Exception {
-        logger.info("Getting latest status for colisLIste <" + colisListe.toString() + ">");
         ArrayList<ColisDataRow> out = new ArrayList<ColisDataRow>();
-        if(colisListe == null){
+        if (colisListe == null) {
+            logger.debug("liste nulle détectée en entrée");
             return null;
         }
+        logger.info("Getting latest status for colisLIste <" + colisListe.toString() + ">");
+        
         Iterator<String> iterColis = colisListe.iterator();
         String lColisId;
         ColisDataRow lDataRow;
-        while(iterColis.hasNext()){
+        
+        while (iterColis.hasNext()) {
             lColisId = iterColis.next();
             logger.info("Getting latest status for colis <" + lColisId + ">...");
-            try{
+            try {
                 lDataRow = ColisCrawler.getLatest(lColisId);
                 logger.info("Got <" + lColisId + "> data: " + lDataRow.toString());
                 out.add(lDataRow);
-            }
-            catch(Exception ex){
+            } catch (Exception ex) {
                 logger.warn("Not able to fetch colis <" + lColisId + ">: " + ex.getMessage());
             }
-            
+
         }
-        
+
         return out;
     }
     
-     public static final ArrayList<ColisDataRow> getColisRows(String itemId) throws Exception {
-         WebClient webClient = buildWebClient();
-         ArrayList<ColisDataRow> rows ;
+    public static final ArrayList<ColisDataRow> getColisRows(String itemId) throws Exception {
+        WebClient webClient = buildWebClient();
+        ArrayList<ColisDataRow> rows;
         rows = new ArrayList<>();
-        if(itemId == null){
+        if (itemId == null) {
             return rows;
         }
-        if (itemId.isEmpty()){
+        if (itemId.isEmpty()) {
             return rows;
         }
-         HtmlPage rowsPage = webClient.getPage(ColisCrawler.BASE_URL + ColisCrawler.QUERY + itemId + "&Submit=Nouvelle+recherche");
-         if (rowsPage.asText().contains(NO_ROWS_MESSAGE)){
-             logger.warn("Le colis demandé <" + itemId + "> est introuvable...");
-             return rows;
-         }
+        HtmlPage rowsPage = webClient.getPage(ColisCrawler.BASE_URL + ColisCrawler.QUERY + itemId + "&Submit=Nouvelle+recherche");
+        if (rowsPage.asText().contains(NO_ROWS_MESSAGE)) {
+            logger.warn("Le colis demandé <" + itemId + "> est introuvable...");
+            return rows;
+        }
         // get the table
-         HtmlTable rowsTable = (HtmlTable)rowsPage.getElementsByTagName("table").get(0);
-         for (final HtmlTableBody body : rowsTable.getBodies()) {
+        HtmlTable rowsTable = (HtmlTable) rowsPage.getElementsByTagName("table").get(0);
+        for (final HtmlTableBody body : rowsTable.getBodies()) {
             final List<HtmlTableRow> tableRows = body.getRows();
             logger.debug("Rows found : " + rows.size());
             // now fetch each row
-             Iterator<HtmlTableRow> rowIter = tableRows.iterator();
+            Iterator<HtmlTableRow> rowIter = tableRows.iterator();
             HtmlTableRow theRow;
-            
+
             String rawDateHeure;
             String pays;
             String localisation;
@@ -99,21 +101,20 @@ public class ColisCrawler {
             String informations;
             LocalDateTime localDateTime;
             Localisation geolocalized;
-            
-            
+
             while (rowIter.hasNext()) {
                 ColisDataRow colisRow = new ColisDataRow();
                 theRow = rowIter.next();
-                
+
                 rawDateHeure = theRow.getCell(1).asText();
                 pays = theRow.getCell(2).asText();
                 localisation = theRow.getCell(3).asText();
                 typeEvenement = theRow.getCell(4).asText();
                 informations = theRow.getCell(5).asText();
-            
+
                 localDateTime = LocalDateTime.parse(rawDateHeure, formatter);
                 geolocalized = Localisations.locate(localisation);
-                
+
                 colisRow.setItemId(itemId);
                 colisRow.setRawDateHeure(rawDateHeure);;
                 colisRow.setPays(pays);
@@ -125,11 +126,11 @@ public class ColisCrawler {
                 colisRow.setCountry(ListCountriesDefinedLanguage.getCountry(pays));
                 colisRow.setLocalization(geolocalized);
                 rows.add(colisRow);
-                
+
                 logger.debug("RAW LINE : <" + theRow.asText() + ">");
                 logger.info("raw dateHeure : <" + rawDateHeure + ">");
                 logger.info("Local DateTime: <" + localDateTime + ">");
-                
+
                 logger.info("pays : <" + pays + ">");
                 logger.info("localisation : <" + localisation + ">");
                 logger.info("typeEvenement : <" + typeEvenement + ">");
@@ -143,62 +144,63 @@ public class ColisCrawler {
             //logger.debug("End of <" + getTransactions().size() + "> transactions fetching");
         }
         return rows;
-     }
-     public static final ColisDataRow getLatest(String itemId) throws Exception {
-         if(itemId == null){
+    }
+    
+    public static final ColisDataRow getLatest(String itemId) throws Exception {
+        if (itemId == null) {
             return null;
-         }
-         if(itemId.length() == 0){
-             return null;
-         }
-         ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
-         
-         if(lList.size() == 0){
-             return null;
-         }
-         
-         return lList.get(0);
-     }
-     
-     public static final ColisDataRow getOldest(String itemId) throws Exception {
-         if(itemId == null){
+        }
+        if (itemId.length() == 0) {
             return null;
-         }
-         if(itemId.length() == 0){
-             return null;
-         }
-         ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
-         
-         if(lList.size() == 0){
-             return null;
-         }
-         
-         return lList.get(lList.size()-1);
-     }
-     
-     public static void main (String[] args){
-         //String itemId = "XX";
-         String itemId = "CA107308006SI";
-         try{
-             ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
-             System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
-             System.out.println("###############################################");
-             System.out.println("latest : " + ColisCrawler.getLatest(itemId));
-             
-             System.out.println("############################################");
-             List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "XXX", "CA107308006SI", "7A53946342222"});
-             List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);
-             Iterator<ColisDataRow> iterLatest = latestStatus.iterator();
-             ColisDataRow aRow;
-             while(iterLatest.hasNext()){
-                 aRow = iterLatest.next();
-                 System.out.println(aRow);
-             }
-             
-             System.exit(0);
-         }
-         catch (Exception ex){
-             System.exit(1);
-         }
-     }
+        }
+        ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
+
+        if (lList.size() == 0) {
+            return null;
+        }
+
+        return lList.get(0);
+    }
+    
+    public static final ColisDataRow getOldest(String itemId) throws Exception {
+        if (itemId == null) {
+            return null;
+        }
+        if (itemId.length() == 0) {
+            return null;
+        }
+        ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
+
+        if (lList.size() == 0) {
+            return null;
+        }
+
+        return lList.get(lList.size() - 1);
+    }
+
+/*    public static void main(String[] args) {
+        //String itemId = "XX";
+        String itemId = "CA107308006SI";
+        try {
+            ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
+            System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
+            System.out.println("###############################################");
+            System.out.println("latest : " + ColisCrawler.getLatest(itemId));
+
+            System.out.println("############################################");
+            List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "XXX", "CA107308006SI", "7A53946342222"});
+            List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);
+            Iterator<ColisDataRow> iterLatest = latestStatus.iterator();
+            ColisDataRow aRow;
+            while (iterLatest.hasNext()) {
+                aRow = iterLatest.next();
+                System.out.println(aRow);
+            }
+
+            System.exit(0);
+        } catch (Exception ex) {
+            System.exit(1);
+        }
+    }*/
+
 }

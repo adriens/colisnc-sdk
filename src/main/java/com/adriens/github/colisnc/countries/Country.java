@@ -10,6 +10,8 @@ package com.adriens.github.colisnc.countries;
  * @author 3004SAL
  */
 public class Country implements Comparable {
+
+    
     private String iso;
     private String code;
     private String name;
@@ -19,24 +21,23 @@ public class Country implements Comparable {
         this.code = code;
         this.name = name;
     }
-
+    
     public String getIso() {
         return iso;
     }
-
+    
     public String getCode() {
         return code;
     }
-
+    
     public String getName() {
         return name;
     }
-
     
     public int compareTo(Country o) {
         return this.name.compareTo(o.getName());
     }
-
+    
     @Override
     public String toString() {
         return "Country{" +
@@ -45,7 +46,7 @@ public class Country implements Comparable {
                 ", name='" + name + '\'' +
                 '}';
     }
-
+    
     @Override
     public int compareTo(Object o) {
         return this.compareTo((Country)o);
