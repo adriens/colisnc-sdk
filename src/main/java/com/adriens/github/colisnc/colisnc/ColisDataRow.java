@@ -6,7 +6,6 @@
 package com.adriens.github.colisnc.colisnc;
 
 import com.adriens.github.colisnc.countries.Country;
-import com.adriens.github.colisnc.countries.ListCountriesDefinedLanguage;
 import com.adriens.github.colisnc.localisation.Localisation;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
