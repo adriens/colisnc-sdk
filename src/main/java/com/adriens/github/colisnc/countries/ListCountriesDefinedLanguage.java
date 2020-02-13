@@ -16,8 +16,49 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author 3004SAL
+ * 
+ * ListCountriesDefinedLanguage is the class representing the list of all countries in french.
+ * 
+ * {@code 
+ * 
+ * public void demoLocalisations() {
+ *
+ *      try {
+ *          JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
+ *          Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+ *
+ *          assertNotNull("JAXBContext is not null", jaxbContext);
+ *          assertNotNull("Unmarshaller is not null", jaxbUnmarshaller);
+ *
+ *          //We had written this file in marshalling example
+ *          Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
+ *
+ *          assertTrue("there must be at least 10 localisation", parts.getLocalisations().size() > 10);
+ *
+ *          for (Localisation part : parts.getLocalisations()) {
+ *              System.out.println(part.getName());
+ *              System.out.println(part.getUrl());
+ *              System.out.println("-------------------------------------------------");
+ *          }
+ *
+ *          System.out.println("######################################################");
+ *
+ *          String aLocalisation = "NOUMEA-CTP";
+ *          Localisation local = new Localisation();
+ *
+ *          local = Localisations.locate(aLocalisation);
+ *          System.out.println(local);
+ *
+ *          assertNotNull("we must find a city", local);
+ *
+ *      } catch (JAXBException ex) {
+ *          System.err.println("impossible to manage xml : " + ex.getMessage());
+ *      }
+ *  }
+ * 
+ * }
+ * 
  */
 public class ListCountriesDefinedLanguage {
     
