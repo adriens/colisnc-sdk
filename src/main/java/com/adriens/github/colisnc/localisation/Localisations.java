@@ -76,27 +76,5 @@ public class Localisations {
             return new Localisation();
         }
     }
-
-    /*
-    public static void main(String[] args) throws Exception {
-        JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-        //We had written this file in marshalling example
-        Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
-
-        for (Localisation part : parts.getLocalisations()) {
-            System.out.println(part.getName());
-            System.out.println(part.getUrl());
-            System.out.println("-------------------------------------------------");
-        }
-        
-        System.out.println("######################################################");
-        
-        String aLocalisation = "NOUMEA-CTPdd";
-        Localisation local = new Localisation();
-        
-        local = Localisations.locate(aLocalisation);
-        System.out.println(local);
-    }*/
+    
 }

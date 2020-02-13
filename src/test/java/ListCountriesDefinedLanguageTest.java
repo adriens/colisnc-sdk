@@ -14,16 +14,10 @@ import org.junit.Test;
 /**
  *
  * @author meilie
- *
- * Test of class ColisCrawler.
  * 
  */
 public class ListCountriesDefinedLanguageTest {
     
-    /**
-     * Test of getCountry method, of class ColisCrawler.
-     * Test null parameter.
-     */
     @Test
     public void testGetNullCountry() {
         try {
@@ -38,10 +32,6 @@ public class ListCountriesDefinedLanguageTest {
         }
     }
     
-    /**
-     * Test of getCountry method, of class ColisCrawler.
-     * Test empty parameter.
-     */
     @Test
     public void testGetEmptyCountry() {
         try {

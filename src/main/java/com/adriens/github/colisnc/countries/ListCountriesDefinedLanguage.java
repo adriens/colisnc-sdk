@@ -63,14 +63,5 @@ public class ListCountriesDefinedLanguage {
         Map<String, Country> cMap = getCountries().stream().collect(Collectors.toMap(Country::getName, country -> country));
         out = cMap.get(StringUtils.stripAccents(aCountryName.toLowerCase()));
         return out;
-    }/*
-    
-    
-    public static void main(String... args){
-
-        // Create a collection of all available countries
-        Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
-        System.out.println("trouvé:\n" + theCountry);
-        System.exit(0);
-    }*/
+    }
 }

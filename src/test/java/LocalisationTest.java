@@ -13,16 +13,9 @@ import org.junit.Test;
  *
  * @author meilie
  * 
- * Test of class Localisation.
- *
  */
 public class LocalisationTest {
-
-
-    /**
-     * Test of getLongName method, of class Localisation.
-     * Test for longName set to "test".
-     */
+    
     @Test
     public void testGetLongName() {
         try {

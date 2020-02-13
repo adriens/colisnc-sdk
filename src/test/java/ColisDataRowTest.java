@@ -16,16 +16,10 @@ import org.junit.Test;
 /**
  *
  * @author meilie
- *
- * Test of class ColisDataRow.
- * 
  */
 
 public class ColisDataRowTest {
     
-    /**
-     * Test of getLocalization method, of class ColisDataRow.
-     */
     @Test
     public void testGetLocalization() {
         try {
@@ -40,13 +34,8 @@ public class ColisDataRowTest {
             
             assertEquals("No exception", 0, ex.getMessage().length());
         }
-        
     }
     
-    /**
-     * Test of getStatus method, of class ColisDataRow.
-     * Test null row.
-     */
     @Test
     public void testGetStatusNull() {
         try {
@@ -60,10 +49,6 @@ public class ColisDataRowTest {
         }
     }
     
-    /**
-     * Test of getPays method, of class ColisDataRow.
-     * Test for country name set to "test".
-     */
     @Test
     public void testGetPays() {
         try {
@@ -79,10 +64,6 @@ public class ColisDataRowTest {
         
     }
     
-    /**
-     * Test of getInformations method, of class ColisDataRow.
-     * Test for information set to "test".
-     */
     @Test
     public void testGetInformations() {
         try {
@@ -98,10 +79,6 @@ public class ColisDataRowTest {
         
     }
     
-    /**
-     * Test of getDate method, of class ColisDataRow.
-     * Test for date set to current date.
-     */
     @Test
     public void testGetDate() {
         try {
@@ -118,10 +95,6 @@ public class ColisDataRowTest {
         
     }
     
-    /**
-     * Test of getDate method, of class ColisDataRow.
-     * Test for country set to (isoTEST","codeTEST","nameTEST").
-     */
     @Test
     public void testGetCountry() {
         try {

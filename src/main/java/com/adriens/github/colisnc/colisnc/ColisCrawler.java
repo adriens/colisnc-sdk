@@ -177,30 +177,6 @@ public class ColisCrawler {
 
         return lList.get(lList.size() - 1);
     }
-
-/*    public static void main(String[] args) {
-        //String itemId = "XX";
-        String itemId = "CA107308006SI";
-        try {
-            ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
-            System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
-            System.out.println("###############################################");
-            System.out.println("latest : " + ColisCrawler.getLatest(itemId));
-
-            System.out.println("############################################");
-            List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "XXX", "CA107308006SI", "7A53946342222"});
-            List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);
-            Iterator<ColisDataRow> iterLatest = latestStatus.iterator();
-            ColisDataRow aRow;
-            while (iterLatest.hasNext()) {
-                aRow = iterLatest.next();
-                System.out.println(aRow);
-            }
-
-            System.exit(0);
-        } catch (Exception ex) {
-            System.exit(1);
-        }
-    }*/
+    
 
 }
