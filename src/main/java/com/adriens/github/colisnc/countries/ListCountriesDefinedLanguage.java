@@ -19,54 +19,29 @@ import org.slf4j.LoggerFactory;
  * @author 3004SAL
  * <br>
  * <p>
- * <b>ListCountriesDefinedLanguage</b> is the class representing the list of all countries in french.
+ * <code><b>ListCountriesDefinedLanguage</b></code> is the class representing the list of all
+ * countries in french.
  * </p>
  * <u>example:</u>
- * <pre> {@code 
- * public void main() {
+ * <pre> {@code
+ * public void main(String... args) {
  *
- *      try {
- *          JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
- *          Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
- *
- *          assertNotNull("JAXBContext is not null", jaxbContext);
- *          assertNotNull("Unmarshaller is not null", jaxbUnmarshaller);
- *
- *          //We had written this file in marshalling example
- *          Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
- *
- *          assertTrue("there must be at least 10 localisation", parts.getLocalisations().size() > 10);
- *
- *          for (Localisation part : parts.getLocalisations()) {
- *              System.out.println(part.getName());
- *              System.out.println(part.getUrl());
- *              System.out.println("-------------------------------------------------");
- *          }
- *
- *          System.out.println("######################################################");
- *
- *          String aLocalisation = "NOUMEA-CTP";
- *          Localisation local = new Localisation();
- *
- *          local = Localisations.locate(aLocalisation);
- *          System.out.println(local);
- *
- *          assertNotNull("we must find a city", local);
- *
- *      } catch (JAXBException ex) {
- *          System.err.println("impossible to manage xml : " + ex.getMessage());
- *      }
+ *      // Create a collection of all available countries
+ *      Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
+ *      System.out.println("trouvé:\n" + theCountry);
+ *      System.exit(0);
  *  }
  * }
  * </pre>
- * 
+ *
  */
 public class ListCountriesDefinedLanguage {
-    
+
     final static Logger logger = LoggerFactory.getLogger(ListCountriesDefinedLanguage.class);
-    
+
     /**
      * Return a list of all Country objects in french
+     *
      * @return a list of all Country objects
      */
     public static List<Country> getCountries() {
@@ -74,7 +49,7 @@ public class ListCountriesDefinedLanguage {
 
         // Map ISO countries to custom country object
         String[] countryCodes = Locale.getISOCountries();
-        for (String countryCode : countryCodes){
+        for (String countryCode : countryCodes) {
 
             Locale locale = new Locale("", countryCode);
             String iso = locale.getISO3Country();
@@ -95,22 +70,22 @@ public class ListCountriesDefinedLanguage {
         logger.debug("found: " + countries.size() + " countries");
         return countries;
     }
-    
+
     /**
      * Return a Country object that match the aCountryName argument.
-     * @param aCountryName
-     *          the name of the Country to return.
+     *
+     * @param aCountryName the name of the Country to return.
      * @return a Country object.
      */
-    public static Country getCountry(String aCountryName){
+    public static Country getCountry(String aCountryName) {
         Country out = null;
-        if(aCountryName == null){
+        if (aCountryName == null) {
             return out;
         }
-        if(aCountryName.equals("")){
+        if (aCountryName.equals("")) {
             return out;
         }
-        
+
         Map<String, Country> cMap = getCountries().stream().collect(Collectors.toMap(Country::getName, country -> country));
         out = cMap.get(StringUtils.stripAccents(aCountryName.toLowerCase()));
         return out;
