@@ -23,7 +23,10 @@ public class ListCountriesDefinedLanguage {
     
     final static Logger logger = LoggerFactory.getLogger(ListCountriesDefinedLanguage.class);
     
-    
+    /**
+     * Return a list of all Country objects in french
+     * @return a list of all Country objects
+     */
     public static List<Country> getCountries() {
         List<Country> countries = new ArrayList<>();
 
@@ -51,6 +54,12 @@ public class ListCountriesDefinedLanguage {
         return countries;
     }
     
+    /**
+     * Return a Country object that match the aCountryName argument.
+     * @param aCountryName
+     *          the name of the Country to return.
+     * @return a Country object.
+     */
     public static Country getCountry(String aCountryName){
         Country out = null;
         if(aCountryName == null){
