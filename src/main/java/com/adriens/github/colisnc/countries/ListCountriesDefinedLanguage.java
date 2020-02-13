@@ -17,12 +17,13 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author 3004SAL
- * 
- * ListCountriesDefinedLanguage is the class representing the list of all countries in french.
- * 
- * {@code 
- * 
- * public void demoLocalisations() {
+ * <br>
+ * <p>
+ * <b>ListCountriesDefinedLanguage</b> is the class representing the list of all countries in french.
+ * </p>
+ * <u>example:</u>
+ * <pre> {@code 
+ * public void main() {
  *
  *      try {
  *          JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
@@ -56,8 +57,8 @@ import org.slf4j.LoggerFactory;
  *          System.err.println("impossible to manage xml : " + ex.getMessage());
  *      }
  *  }
- * 
  * }
+ * </pre>
  * 
  */
 public class ListCountriesDefinedLanguage {
