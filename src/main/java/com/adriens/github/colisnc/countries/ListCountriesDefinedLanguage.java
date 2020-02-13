@@ -5,7 +5,6 @@
  */
 package com.adriens.github.colisnc.countries;
 
-import com.adriens.github.colisnc.colisnc.ColisCrawler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
