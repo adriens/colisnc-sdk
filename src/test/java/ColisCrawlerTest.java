@@ -23,9 +23,6 @@ import org.junit.Test;
  */
 public class ColisCrawlerTest {
 
-    /**
-     * Test of WebClient method, of class ColisCrawler.
-     */
     @Test
     public void testSiteIsAlive() {
         try {
@@ -42,10 +39,6 @@ public class ColisCrawlerTest {
         }
     }
     
-    /**
-     * Test of getLatestStatusForColisList method, of class ColisCrawler.
-     * Test null parameter colisListe.
-     */
     @Test
     public void testGetLatestStatusForColisListNullColisListe() {
         try {
@@ -58,11 +51,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getLatestStatusForColisList method, of class ColisCrawler.
-     * Test empty parameter colisListe.
-     */
+    
     @Test
     public void testGetLatestStatusForColisListEmptyColisListe() {
         try {
@@ -76,11 +65,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getLatestStatusForColisList method, of class ColisCrawler.
-     * Test for 1 colis in parameter colisListe.
-     */
+    
     @Test
     public void testGetLatestStatusForColisListOneColisListe() {
         try {
@@ -94,11 +79,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getLatestStatusForColisList method, of class ColisCrawler.
-     * Test for 3 colis in parameter colisListe.
-     */
+    
     @Test
     public void testGetLatestStatusForColisListMultiColisListe() {
         try {
@@ -112,11 +93,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test empty parameter.
-     */
+    
     @Test
     public void testGetColisRowsEmptyItemId() {
         try {
@@ -130,11 +107,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test null parameter.
-     */
+    
     @Test
     public void testGetColisRowsNulltemId() {
 
@@ -149,11 +122,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test existing colis, itemId parameter.
-     */
+    
     @Test
     public void testGetColisRowsGoodItemId() {
         try {
@@ -167,11 +136,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test nonexistent colis, itemId parameter.
-     */
+    
     @Test
     public void testGetColisRowsBadItemId() {
         try {
@@ -185,11 +150,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test null parameter.
-     */
+    
     @Test
     public void testGetLatestNullItemId() {
         try {
@@ -203,11 +164,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getColisRows method, of class ColisCrawler.
-     * Test empty parameter.
-     */
+    
     @Test
     public void testGetLatestEmptyItemId() {
         try {
@@ -221,11 +178,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getLatest method, of class ColisCrawler.
-     * Test nonexistent colis, itemId parameter.
-     */
+    
     @Test
     public void testGetLatestBadItemId() {
         try {
@@ -239,11 +192,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getLatest method, of class ColisCrawler.
-     * Test existing colis, itemId parameter.
-     */
+    
     @Test
     public void testGetLatestGoodItemId() {
         try {
@@ -259,11 +208,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getOldest method, of class ColisCrawler.
-     * Test null parameter.
-     */
+    
     @Test
     public void testGetOldestNullItemId() {
         try {
@@ -277,11 +222,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getOldest method, of class ColisCrawler.
-     * Test empty parameter.
-     */
+    
     @Test
     public void testGetOldestEmptyItemId() {
         try {
@@ -295,11 +236,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getOldest method, of class ColisCrawler.
-     * Test nonexistent colis, itemId paramter.
-     */
+    
     @Test
     public void testGetOldestBadItemId() {
         try {
@@ -313,11 +250,7 @@ public class ColisCrawlerTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of getOldest method, of class ColisCrawler.
-     * Test existing colis, itemId parameter.
-     */
+    
     @Test
     public void testGetOldestGoodItemId() {
         try {
