@@ -25,11 +25,44 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * @author 3004SAL
+ * <br>
+ * <p>
+ * <code><b>ColisCrawler</b></code> is the class representing the list of all rows for a parcel number.
+ * </p>
+ * <u>example:</u>
+ * <pre> {@code
+ * public void testGetOldestGoodItemId() {
+ *      try {
+ *
+ *          String itemId = "CA107308006SI";
+ *          ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
+ *          ColisDataRow oldestRow = lList.get(lList.size() - 1);
+ *          ColisDataRow result = ColisCrawler.getOldest(itemId);
+ *          assertEquals(result.getItemId(), oldestRow.getItemId());
+ *
+ *      } catch (Exception ex) {
+ *          
+ *          assertEquals("No exception", 0, ex.getMessage().length());
+ *      }
+ *  }
+ * }
+ * </pre>
  */
 public class ColisCrawler {
 
+    /**
+     * The base url of the parcel research.
+     */
     public static final String BASE_URL = "http://webtrack.opt.nc/ipswebtracking/IPSWeb_item_events.asp";
+
+    /**
+     * The url parameter of the parcel id.
+     */
     public static final String QUERY = "?itemid=";
+
+    /**
+     * The message when no rows was found.
+     */
     public static final String NO_ROWS_MESSAGE = "Le colis demandé est introuvable...";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss");
     final static Logger logger = LoggerFactory.getLogger(ColisCrawler.class);
@@ -41,6 +74,13 @@ public class ColisCrawler {
         return webClient;
     }
     
+    /**
+     * Return a list of the latests rows for the parcel number in parameter.
+     * @param colisListe
+     *          A list of parcel number.
+     * @return a list of the latests rows for the parcel number in parameter. 
+     * @throws Exception if there are rows for the parcel number.
+     */
     public static final ArrayList<ColisDataRow> getLatestStatusForColisList(List<String> colisListe) throws Exception {
         ArrayList<ColisDataRow> out = new ArrayList<ColisDataRow>();
         if (colisListe == null) {
@@ -69,6 +109,13 @@ public class ColisCrawler {
         return out;
     }
     
+    /**
+     * Return a list of rows for the parcel number in parameter.
+     * @param itemId 
+     *          The parcel number, as text.
+     * @return each row of the ColisDataRow object for the parcel number in parameter.
+     *
+     */
     public static final ArrayList<ColisDataRow> getColisRows(String itemId) throws Exception {
         WebClient webClient = buildWebClient();
         ArrayList<ColisDataRow> rows;
@@ -145,6 +192,13 @@ public class ColisCrawler {
         return rows;
     }
     
+    /**
+     * Return the latest row for the parcel in attibute.
+     * @param itemId
+     *          The parcel number, as text.
+     * @return the latest row for the parcel in attibute.
+     *
+     */
     public static final ColisDataRow getLatest(String itemId) throws Exception {
         if (itemId == null) {
             return null;
@@ -161,6 +215,13 @@ public class ColisCrawler {
         return lList.get(0);
     }
     
+    /**
+     * Return the oldest row for the parcel in attibute.
+     * @param itemId
+     *          The parcel number, as text.
+     * @return the oldest row for the parcel in attibute.
+     *
+     */
     public static final ColisDataRow getOldest(String itemId) throws Exception {
         if (itemId == null) {
             return null;
