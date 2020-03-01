@@ -14,6 +14,10 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * @author 3004SAL
+ * <br>
+ * <p>
+ * A <code><b>ColisDataRow</b></code> object represents a row for the parcel number.
+ * </p>
  */
 public class ColisDataRow {
 
