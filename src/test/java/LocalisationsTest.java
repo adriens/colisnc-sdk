@@ -16,16 +16,10 @@ import org.junit.Test;
  *
  * @author meilie
  * 
- * Test of class Localisations.
- * 
  */
 
 public class LocalisationsTest {
     
-    /**
-     * Test of setLocalisations method, of class Localisations.
-     * Test for 1 city named "test".
-     */
     @Test
     public void testSetOneLocalisations() {
         try {
@@ -45,11 +39,7 @@ public class LocalisationsTest {
             assertEquals("No exception", 0, ex.getMessage().length());
         }
     }
-
-    /**
-     * Test of setLocalisations method, of class Localisations.
-     * Test for 3 cities named "test1","test2","test3".
-     */
+    
     @Test
     public void testSetMultiLocalisations() {
         try {

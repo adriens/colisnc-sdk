@@ -5,7 +5,6 @@
  */
 package com.adriens.github.colisnc.countries;
 
-import com.adriens.github.colisnc.colisnc.ColisCrawler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,20 +16,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author 3004SAL
+ * <br>
+ * <p>
+ * <code><b>ListCountriesDefinedLanguage</b></code> is the class representing the list of all
+ * countries in french.
+ * </p>
+ * <u>example:</u>
+ * <pre> {@code
+ * public void main(String... args) {
+ *
+ *      // Create a collection of all available countries
+ *      Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
+ *      System.out.println("trouvé:\n" + theCountry);
+ *      System.exit(0);
+ *  }
+ * }
+ * </pre>
+ *
  */
 public class ListCountriesDefinedLanguage {
-    
+
     final static Logger logger = LoggerFactory.getLogger(ListCountriesDefinedLanguage.class);
-    
-    
+
+    /**
+     * Return a list of all Country objects in french
+     *
+     * @return a list of all Country objects
+     */
     public static List<Country> getCountries() {
         List<Country> countries = new ArrayList<>();
 
         // Map ISO countries to custom country object
         String[] countryCodes = Locale.getISOCountries();
-        for (String countryCode : countryCodes){
+        for (String countryCode : countryCodes) {
 
             Locale locale = new Locale("", countryCode);
             String iso = locale.getISO3Country();
@@ -51,27 +70,24 @@ public class ListCountriesDefinedLanguage {
         logger.debug("found: " + countries.size() + " countries");
         return countries;
     }
-    
-    public static Country getCountry(String aCountryName){
+
+    /**
+     * Return a Country object that match the aCountryName argument.
+     *
+     * @param aCountryName the name of the Country to return.
+     * @return a Country object.
+     */
+    public static Country getCountry(String aCountryName) {
         Country out = null;
-        if(aCountryName == null){
+        if (aCountryName == null) {
             return out;
         }
-        if(aCountryName.equals("")){
+        if (aCountryName.equals("")) {
             return out;
         }
-        
+
         Map<String, Country> cMap = getCountries().stream().collect(Collectors.toMap(Country::getName, country -> country));
         out = cMap.get(StringUtils.stripAccents(aCountryName.toLowerCase()));
         return out;
-    }/*
-    
-    
-    public static void main(String... args){
-
-        // Create a collection of all available countries
-        Country theCountry = ListCountriesDefinedLanguage.getCountry("ÉTATS-UNIS");
-        System.out.println("trouvé:\n" + theCountry);
-        System.exit(0);
-    }*/
+    }
 }

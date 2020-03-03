@@ -25,15 +25,10 @@ import org.junit.Test;
  * 
  * @author meilie
  * 
- * Test of classes : ColisCrawler, ListCountriesDefinedLanguage and Localisations.
- * 
  */
 
 public class DemoTest {
     
-    /** 
-     * Test of main method, of class Localisations.
-     */
     @Test
     public void demoLocalisations() {
 
@@ -70,9 +65,6 @@ public class DemoTest {
         }
     }
     
-    /**
-     * Test of main method, of class ListCountriesDefinedLanguage.
-     */
     @Test
     public void demoCountry() {
         
@@ -91,9 +83,6 @@ public class DemoTest {
         }
     }
     
-    /**
-     * Test of main method, of class ColisCrawler.
-     */
     @Test
     public void demoColisRows() {
         

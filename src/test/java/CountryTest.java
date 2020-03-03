@@ -11,17 +11,10 @@ import static org.junit.Assert.*;
 /**
  *
  * @author meilie
- * 
- * Test of class Country.
- *
  */
 
 public class CountryTest {
     
-    /**
-     * Test of getIso method, of class Country.
-     * Test for country set to ("isoTEST","codeTEST","nameTEST").
-     */
     @Test
     public void testGetIso() {
         try {
@@ -36,10 +29,6 @@ public class CountryTest {
         
     }
     
-    /**
-     * Test of getCode method, of class Country.
-     * Test for country set to ("isoTEST","codeTEST","nameTEST").
-     */
     @Test
     public void testGetCode() {
         try {

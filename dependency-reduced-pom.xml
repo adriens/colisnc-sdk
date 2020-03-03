@@ -34,7 +34,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
+        <version>${jacoco-maven-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -56,7 +56,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -65,93 +65,18 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>com.github.stefanbirkner</groupId>
-      <artifactId>system-rules</artifactId>
-      <version>1.19.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>2.44.0</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>selenium-chrome-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>selenium-htmlunit-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>selenium-firefox-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>selenium-ie-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>selenium-safari-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>selenium-support</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>webbit</artifactId>
-          <groupId>org.webbitserver</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.opera</groupId>
-      <artifactId>operadriver</artifactId>
-      <version>1.5</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>selenium-remote-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>operalaunchers</artifactId>
-          <groupId>com.opera</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>protobuf-java</artifactId>
-          <groupId>com.google.protobuf</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-jxpath</artifactId>
-          <groupId>commons-jxpath</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-exec</artifactId>
-          <groupId>org.apache.commons</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ini4j</artifactId>
-          <groupId>org.ini4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
   <properties>
-    <logback.version>1.2.3</logback.version>
-    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-    <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
-    <htmlunit.version>2.36.0</htmlunit.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jaxb-core.version>2.3.0.1</jaxb-core.version>
+    <junit.version>4.13</junit.version>
+    <htmlunit.version>2.37.0</htmlunit.version>
+    <maven-shade-plugin.version>3.2.2</maven-shade-plugin.version>
+    <jaxb-impl.version>2.3.2</jaxb-impl.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <junit.version>4.12</junit.version>
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <logback.version>1.2.3</logback.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 </project>

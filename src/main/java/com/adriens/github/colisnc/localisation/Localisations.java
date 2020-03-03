@@ -23,7 +23,34 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * @author 3004SAL
+ *<br>
+ * <p>
+ * <code><b>Localisations</b></code> object represents a list of <code>Localisation</code> objects.
+ * </p>
+ * <u>example:</u>
+ * <pre> {@code
+ * public static void main(String[] args) throws Exception {
+ *      JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
+ *      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
  *
+ *      //We had written this file in marshalling example
+ *      Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
+ *
+ *      for (Localisation part : parts.getLocalisations()) {
+ *          System.out.println(part.getName());
+ *          System.out.println(part.getUrl());
+ *          System.out.println("-------------------------------------------------");
+ *      }
+ *      
+ *      System.out.println("######################################################");
+ *      
+ *      String aLocalisation = "NOUMEA-CTPdd";
+ *      Localisation local = new Localisation();
+ *      
+ *      local = Localisations.locate(aLocalisation);
+ *      System.out.println(local);
+ *  }
+ * }</pre>
  */
 @XmlRootElement(name = "localisations")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -35,19 +62,36 @@ public class Localisations {
     @XmlElement(name = "localisation")
     private List<Localisation> localisations = null;
 
-   
+    /**
+     * Constructor
+     */
     public Localisations() {
         localisations = new ArrayList<Localisation>();
     }
     
+    /**
+     * Return the list of Localisation objects.
+     * @return the list of Localisation objects.
+     */
     public List<Localisation> getLocalisations() {
         return localisations;
     }
     
+    /**
+     * Set the localisations.
+     * @param localisations
+     *              a list of Localisation objects.
+     */
     public void setLocalisations(List<Localisation> localisations) {
         this.localisations = localisations;
     }
     
+    /**
+     * Return the Localisation object that match the localisation name in argument.
+     * @param aLocalisation
+     *              a localisation name.
+     * @return the Localisation object that match the localisation name in argument. If the localisation not found, it returns a empty Localisation object.
+     */
     public static Localisation locate(String aLocalisation) {
 
         Localisation out = new Localisation();
@@ -76,27 +120,5 @@ public class Localisations {
             return new Localisation();
         }
     }
-
-    /*
-    public static void main(String[] args) throws Exception {
-        JAXBContext jaxbContext = JAXBContext.newInstance(Localisations.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-        //We had written this file in marshalling example
-        Localisations parts = (Localisations) jaxbUnmarshaller.unmarshal(Localisations.class.getResourceAsStream("/localisations.xml"));
-
-        for (Localisation part : parts.getLocalisations()) {
-            System.out.println(part.getName());
-            System.out.println(part.getUrl());
-            System.out.println("-------------------------------------------------");
-        }
-        
-        System.out.println("######################################################");
-        
-        String aLocalisation = "NOUMEA-CTPdd";
-        Localisation local = new Localisation();
-        
-        local = Localisations.locate(aLocalisation);
-        System.out.println(local);
-    }*/
+    
 }
