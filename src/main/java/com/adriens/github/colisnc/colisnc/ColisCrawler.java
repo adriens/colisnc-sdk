@@ -53,7 +53,7 @@ public class ColisCrawler {
     /**
      * The base url of the parcel research.
      */
-    public static final String BASE_URL = "http://webtrack.opt.nc/ipswebtracking/IPSWeb_item_events.asp";
+    public static final String BASE_URL = "https://webtracking-nca.ptc.post/IPSWeb_item_events.aspx";//http://webtrack.opt.nc/ipswebtracking/IPSWeb_item_events.asp";
 
     /**
      * The url parameter of the parcel id.
@@ -236,6 +236,18 @@ public class ColisCrawler {
         }
 
         return lList.get(lList.size() - 1);
+    }
+    
+    public static void main(String[] args){
+        try{
+            String itemId = "8Z00136833343";
+        ArrayList<ColisDataRow> coliadDetails = ColisCrawler.getColisRows(itemId);
+        System.out.println("Got <" + coliadDetails.size() + "> details pour <" + itemId + ">");
+        System.exit(0);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
     
 
