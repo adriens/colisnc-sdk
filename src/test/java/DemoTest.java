@@ -87,7 +87,7 @@ public class DemoTest {
     public void demoColisRows() {
         
         //String itemId = "XX";
-        String itemId = "CA107308006SI";
+        String itemId = "8Z00136833343";
         assertNotNull("itemId is not null", itemId);
         
         try {
@@ -100,7 +100,7 @@ public class DemoTest {
             System.out.println("latest : " + ColisCrawler.getLatest(itemId));
             System.out.println("############################################");
             
-            List<String> aListOfColis = Arrays.asList(new String[]{"RP733152095CN", "XXX", "CA107308006SI", "7A53946342222"});
+            List<String> aListOfColis = Arrays.asList(new String[]{"8Z00136833343", "XXX", "8Z00136833343", "8Z00136833343"});
             assertNotNull("we must find rows", aListOfColis);
             
             List<ColisDataRow> latestStatus = ColisCrawler.getLatestStatusForColisList(aListOfColis);

@@ -70,7 +70,7 @@ public class ColisCrawlerTest {
     public void testGetLatestStatusForColisListOneColisListe() {
         try {
 
-            List<String> colisListe = Arrays.asList(new String[]{"CA107308006SI"});
+            List<String> colisListe = Arrays.asList(new String[]{"8Z00136833343"});
             ArrayList<ColisDataRow> colisList = ColisCrawler.getLatestStatusForColisList(colisListe);
             assertTrue("latest row for colisListe", colisList.size() == 1);
 
@@ -84,7 +84,7 @@ public class ColisCrawlerTest {
     public void testGetLatestStatusForColisListMultiColisListe() {
         try {
 
-            List<String> colisListe = Arrays.asList(new String[]{"RP733152095CN", "7Q08649925982", "7A53946342222"});
+            List<String> colisListe = Arrays.asList(new String[]{"8Z00136833343", "8Z00136833343", "8Z00136833343"});
             ArrayList<ColisDataRow> colisList = ColisCrawler.getLatestStatusForColisList(colisListe);
             assertTrue("3 latest row for the 3 colisListe", colisList.size() == 3);
 
@@ -127,9 +127,9 @@ public class ColisCrawlerTest {
     public void testGetColisRowsGoodItemId() {
         try {
 
-            String itemId = "CA107308006SI";
+            String itemId = "8Z00136833343";
             ArrayList<ColisDataRow> colisList = ColisCrawler.getColisRows(itemId);
-            assertTrue("on itemId \"CA107308006SI\", there're 6 rows", colisList.size() == 6);
+            assertTrue("on itemId \"8Z00136833343\", there're 7 rows", colisList.size() == 7);
 
         } catch (Exception ex) {
             
@@ -197,7 +197,7 @@ public class ColisCrawlerTest {
     public void testGetLatestGoodItemId() {
         try {
 
-            String itemId = "CA107308006SI";
+            String itemId = "8Z00136833343";
             ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
             ColisDataRow latestRow = lList.get(0);
             ColisDataRow result = ColisCrawler.getLatest(itemId);
@@ -255,7 +255,7 @@ public class ColisCrawlerTest {
     public void testGetOldestGoodItemId() {
         try {
 
-            String itemId = "CA107308006SI";
+            String itemId = "8Z00136833343";
             ArrayList<ColisDataRow> lList = ColisCrawler.getColisRows(itemId);
             ColisDataRow oldestRow = lList.get(lList.size() - 1);
             ColisDataRow result = ColisCrawler.getOldest(itemId);
