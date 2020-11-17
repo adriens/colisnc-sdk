@@ -129,7 +129,7 @@ public class ColisCrawlerTest {
 
             String itemId = "8Z00136833343";
             ArrayList<ColisDataRow> colisList = ColisCrawler.getColisRows(itemId);
-            assertTrue("on itemId \"8Z00136833343\", there're 7 rows", colisList.size() == 7);
+            assertTrue("on itemId \"8Z00136833343\", there're 7 rows", colisList.size() == 8);
 
         } catch (Exception ex) {
             
