@@ -23,7 +23,7 @@
         <jaxb-impl.version>3.0.2</jaxb-impl.version>
         
         <!-- dépendance jacoco -->
-        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
     
     <dependencies>
